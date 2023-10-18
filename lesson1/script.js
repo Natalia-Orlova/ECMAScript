@@ -47,17 +47,18 @@ console.log(`2-й счетчик: ${num2.getValue() * 4}`);
 // const targetElement = findElementByClass(rootElement, 'my-class');
 // console.log(targetElement);
 
-let result = null;
+
 function findElementByClass(rootElement, classElement) {
-  if (rootElement.hasChildNodes()) {
-    for (const element of rootElement.children) {
-      if (element.className === classElement) {
-        result = element;
-      } 
-      findElementByClass(element, classElement);
+  if (rootElement.classList.contains(classElement)) {
+    return rootElement;
+  }
+  for (const element of rootElement.children) {
+    const elem = findElementByClass(element, classElement);
+    if (elem) {
+      return elem;
     }
   }
-  return result;
+  return null;
 }
 
 const rootElement = document.getElementById("root");
