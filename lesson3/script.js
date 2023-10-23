@@ -59,9 +59,9 @@ class Product {
 }
 
 class Order {
+  products = [];
   constructor(id) {
     this.id = id;
-    this.products = [];
   }
 
   addProduct(product) {
@@ -69,11 +69,14 @@ class Order {
   }
 
   getTotalPrice() {
-    let totalPrice = 0;
-    this.products.forEach((product) => {
-      totalPrice += product.price * product.quantity;
-    });
-    return totalPrice;
+    // let totalPrice = 0;
+    // this.products.forEach((product) => {
+    //   totalPrice += product.price * product.quantity;
+    // });
+    // return totalPrice;
+    
+    return this.products.reduce((acc, product) => 
+    acc + product.price * product.quantity, 0);
   }
 }
 
@@ -83,9 +86,9 @@ const order = new Order(12345);
 const product1 = new Product("Phone", 500, 2);
 order.addProduct(product1);
 
-const product2 = new Product("Headphones", 100, 5);
+const product2 = new Product("Headphones", 100, 1);
 order.addProduct(product2);
 
 console.log(order);
 
-console.log(order.getTotalPrice()); // Вывод: 1500
+console.log(order.getTotalPrice()); // Вывод: 1100
