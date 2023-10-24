@@ -10,24 +10,21 @@
 // Работа должна быть выполнена с API: https://reqres.in/
 
 async function getUserData(ID) {
-    const response = await fetch("https://reqres.in/api/users");
+    const response = await fetch("https://reqres.in/api/users?page=2");
     if (response.ok) {
         const users = await response.json();
-        return users.data.find(function (item) {
-            return item.id === ID;
-        });
+        return users.data.find((item) => item.id === ID);
     } else {
-        throw new Error(`Error: ${response.status}`);
+        throw new Error(`Error status ${response.status}`);
     }
 }
 
-getUserData(1).then(user => {
-    if (user !== undefined) {
-        console.log(user);
-    } else {
-        console.log('There is no user with such ID');
-    }
-})
+getUserData(9).then(user => {
+    user !== undefined ? console.log(user) 
+        : console.log('There is no user with such ID');
+    }).catch(e => {
+    	console.log(e)
+    })
 
 
 // Задание 2. Отправка данных на сервер.
