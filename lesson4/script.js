@@ -9,7 +9,25 @@
 
 // Работа должна быть выполнена с API: https://reqres.in/
 
+async function getUserData(ID) {
+    const response = await fetch("https://reqres.in/api/users");
+    if (response.ok) {
+        const users = await response.json();
+        return users.data.find(function (item) {
+            return item.id === ID;
+        });
+    } else {
+        throw new Error(`Error: ${response.status}`);
+    }
+}
 
+getUserData(1).then(user => {
+    if (user !== undefined) {
+        console.log(user);
+    } else {
+        console.log('There is no user with such ID');
+    }
+})
 
 
 // Задание 2. Отправка данных на сервер.
@@ -34,9 +52,6 @@
 // saveUserData использует fetch для отправки данных о пользователе на удаленный сервер для сохранения. Она отправляет POST-запрос на URL-адрес /api/users с указанием типа содержимого application/json и сериализует объект с данными о пользователе в JSON-строку с помощью JSON.stringify(). Если запрос успешен (с кодом 201), функция разрешает промис. Если запрос неуспешен, функция отклоняет промис с сообщением об ошибке.
 
 // Работа должна быть выполнена с API: https://reqres.in/
-
-
-
 
 // Задание 3. Изменение стиля элемента через заданное время (выполняем, если знакомы с DOM).
 
