@@ -71,3 +71,12 @@ saveUserData(user)
 
 // // Пример использования функции
 // changeStyleDelayed('myElement', 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
+
+function changeStyleDelayed(id, delay) {
+    const elem = document.getElementById(id);
+    setTimeout(function() {
+        elem.style.color = 'blue';
+    }, delay)
+}
+
+changeStyleDelayed('myElement', 2000); // Через 2 секунды изменяет стиль элемента с id 'myElement'"
